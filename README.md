@@ -37,6 +37,7 @@ python 1_Input_preparation.py
 
 - *Output*
 ```
+#output/preprocessed_data_length.npy
 #output/preprocessed_training_data.npy
 ```
 

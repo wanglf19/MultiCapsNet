@@ -43,17 +43,14 @@ print(inputs.shape)
 data_source_length = []
 X = inputs[group_gene_index_dict[key0],:]
 data_source_length.append(inputs[group_gene_index_dict[key0],:].shape[0])
-count = 0
 
 for key in sorted_group_names:
     if key == key0:
         continue
     data_source_length.append(inputs[group_gene_index_dict[key], :].shape[0])
-    print(inputs[group_gene_index_dict[key], :].shape)
     X = np.vstack((X,inputs[group_gene_index_dict[key],:]))
-    count = count + 1
-    print(count)
 
+np.save('output/preprocessed_data_length.npy',np.asarray(data_source_length))
 print(sum(data_source_length))
 print(X.shape)
 np.save('output/preprocessed_training_data.npy',X)
