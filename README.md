@@ -2,7 +2,7 @@
 
 This repository contains the official Keras implementation of:
 
-** MultiCapsNet: an interpretable deep learning classifier integrate data from multiple sources**
+**MultiCapsNet: an interpretable deep learning classifier integrate data from multiple sources**
 
 
 
