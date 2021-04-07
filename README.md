@@ -20,7 +20,7 @@ To unzip the all rar files in dictionary 'data'
 ```
 #In order to meet the requirement of the modeling training and analysis step, the features(genes) of the inputs are ordered according to the prior knowledge
 ```
-- *Augments:
+- *Augments:*
 ```
 #'--scRNA_seq_data', type=str, default='data/00_mouse_sc_RNAseq_expre_original.npy', help='scRNA_seq_expression_data'
 #'--gene_name', type=str, default='data/00NN_training_PPITF_9437_genes.txt', help='gene name in the expression matrix'
@@ -42,7 +42,7 @@ python 1_Input_preparation.py
 
 **2. Model training**
 
-- *Augments:
+- *Augments:*
 ```
 #'--inputdata', type=str, default='data/1_variant_call_data.npy', help='address for input data'
 #'--inputcelltype', type=str, default='data/1_variant_call_type.npy', help='address for celltype label'
@@ -76,7 +76,7 @@ python 2_model_training.py --inputdata data/3_SCENIC_expre.npy --inputcelltype d
 
 **3. Model analysis**
 
-- *Augments:
+- *Augments:*
 ```
 #'--inputdata', type=str, default='data/1_variant_call_data.npy', help='address for input data'
 #'--inputcelltype', type=str, default='data/1_variant_call_type.npy', help='address for celltype label'
