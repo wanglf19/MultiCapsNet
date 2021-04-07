@@ -15,7 +15,7 @@ This repository contains the official Keras implementation of:
 
 
 **1. Input_preparation**
-- *To unzip the all rar files in dictionary 'data'
+- To unzip the all rar files in dictionary 'data'
 - *Decoupling scRNAseq data according to prior knowledge*
 ```
 #In order to meet the requirement of the modeling training and analysis step, the features(genes) of the inputs are ordered according to the prior knowledge
