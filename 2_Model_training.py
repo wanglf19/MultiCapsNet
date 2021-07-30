@@ -19,10 +19,10 @@ parser.add_argument('--inputcelltype', type=str, default='data/1_variant_call_ty
 parser.add_argument('--source_division', type=str, default='data/1_variant_call_data_length.npy', help='data source length')
 parser.add_argument('--num_classes', type=int, default=3, help='number of class need to specify')
 parser.add_argument('--randoms', type=int, default=30, help='random number to split dataset')
-parser.add_argument('--dim_capsule', type=int, default=4, help='dimension of the capsule')
-parser.add_argument('--activation_function', type=str, default='relu', help='activation function for primary capsule')
-parser.add_argument('--batch_size', type=int, default=200, help='training parameters_batch_size')
-parser.add_argument('--epochs', type=int, default=200, help='training parameters_epochs')
+parser.add_argument('--dim_capsule', type=int, default=8, help='dimension of the capsule')
+parser.add_argument('--activation_function', type=str, default='tanh', help='activation function for primary capsule')
+parser.add_argument('--batch_size', type=int, default=400, help='training parameters_batch_size')
+parser.add_argument('--epochs', type=int, default=1000, help='training parameters_epochs')
 
 args = parser.parse_args()
 

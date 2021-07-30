@@ -50,10 +50,10 @@ python 1_Input_preparation.py
 #'--source_division', type=str, default='data/1_variant_call_data_length.npy', help='data source length'
 #'--num_classes', type=int, default=3, help='number of class need to specify'
 #'--randoms', type=int, default=30, help='random number to split dataset'
-#'--dim_capsule', type=int, default=4, help='dimension of the capsule'
-#'--activation_function', type=str, default='relu', help='activation function for primary capsule'
-#'--batch_size', type=int, default=200, help='training parameters_batch_size'
-#'--epochs', type=int, default=200, help='training parameters_epochs'
+#'--dim_capsule', type=int, default=8, help='dimension of the capsule'
+#'--activation_function', type=str, default='tanh', help='activation function for primary capsule'
+#'--batch_size', type=int, default=400, help='training parameters_batch_size'
+#'--epochs', type=int, default=1000, help='training parameters_epochs'
 ```
 
 - *Article example*
@@ -62,10 +62,10 @@ python 1_Input_preparation.py
 python 2_model_training.py
 
 #- (2). mouse single cell RNA-seq dataset:
-python 2_model_training.py --inputdata data/2_mouse_sc_RNAseq_expre.npy --inputcelltype data/2_mouse_sc_RNAseq_celltype.npy --num_classes 7 --dim_capsule 8 --epochs 10 --source_division data/2_mouse_sc_RNAseq_data_length.npy --activation_function tanh
+python 2_model_training.py --inputdata data/2_mouse_sc_RNAseq_expre.npy --inputcelltype data/2_mouse_sc_RNAseq_celltype.npy --num_classes 7 --batch_size 200 --epochs 10 --source_division data/2_mouse_sc_RNAseq_data_length.npy
 
 #- (3). SCENIC mouse brain single cell RNA-seq dataset:
-python 2_model_training.py --inputdata data/3_SCENIC_expre.npy --inputcelltype data/3_SCENIC_celltype.npy --num_classes 7 --dim_capsule 8 --epochs 10 --source_division data/3_SCENIC_data_length.npy --activation_function tanh
+python 2_model_training.py --inputdata data/3_SCENIC_expre.npy --inputcelltype data/3_SCENIC_celltype.npy --num_classes 7 --batch_size 200 --epochs 10 --source_division data/3_SCENIC_data_length.npy
 
 #- (4). You could train the model with your own data
 ```
@@ -84,8 +84,8 @@ python 2_model_training.py --inputdata data/3_SCENIC_expre.npy --inputcelltype d
 #'--source_division', type=str, default='data/1_variant_call_data_length.npy', help='data source length'
 #'--num_classes', type=int, default=3, help='number of class need to specify'
 #'--randoms', type=int, default=30, help='random number to split dataset'
-#'--dim_capsule', type=int, default=4, help='dimension of the capsule'
-#'--activation_function', type=str, default='relu', help='activation function for primary capsule'
+#'--dim_capsule', type=int, default=8, help='dimension of the capsule'
+#'--activation_function', type=str, default='tanh', help='activation function for primary capsule'
 #'--training_weights', type=str, default='weights/1_variant_call.weights', help='training_weights'
 ```
 - *Article example*
@@ -94,10 +94,10 @@ python 2_model_training.py --inputdata data/3_SCENIC_expre.npy --inputcelltype d
 python 3_Model_analysis.py
 
 #- (2). mouse single cell RNA-seq dataset:
-python 3_Model_analysis.py --inputdata data/2_mouse_sc_RNAseq_expre.npy --inputcelltype data/2_mouse_sc_RNAseq_celltype.npy --num_classes 7 --dim_capsule 8 --source_division data/2_mouse_sc_RNAseq_data_length.npy --activation_function tanh --training_weights weights/2_mouse_sc_RNAseq.weights
+python 3_Model_analysis.py --inputdata data/2_mouse_sc_RNAseq_expre.npy --inputcelltype data/2_mouse_sc_RNAseq_celltype.npy --num_classes 7 --source_division data/2_mouse_sc_RNAseq_data_length.npy --training_weights weights/2_mouse_sc_RNAseq.weights
 
 #- (3). SCENIC mouse brain single cell RNA-seq dataset:
-python 3_Model_analysis.py --inputdata data/3_SCENIC_expre.npy --inputcelltype data/3_SCENIC_celltype.npy --num_classes 7 --dim_capsule 8 --source_division data/3_SCENIC_data_length.npy --activation_function tanh --training_weights weights/3_SCENIC.weights
+python 3_Model_analysis.py --inputdata data/3_SCENIC_expre.npy --inputcelltype data/3_SCENIC_celltype.npy --num_classes 7 --source_division data/3_SCENIC_data_length.npy --training_weights weights/3_SCENIC.weights
 
 #- (4). You could analyze the model with your own data and weights
 ```
