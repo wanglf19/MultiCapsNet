@@ -1,5 +1,5 @@
 #! -*- coding: utf-8 -*-
-# refer: https://kexue.fm/archives/5112
+# refer: https://kexue.fm/archives/5112 and https://github.com/bojone/Capsule
 
 from keras import activations
 from keras import backend as K
@@ -33,10 +33,10 @@ class Capsule(Layer):
     def build(self, input_shape):
         super(Capsule, self).build(input_shape)
         input_dim_capsule = input_shape[-1]
-        if self.share_weights:   #wang share_weights
+        if self.share_weights:
             self.W = self.add_weight(name='capsule_kernel',
                                      shape=(1, input_dim_capsule,
-                                            self.num_capsule * self.dim_capsule), #wang
+                                            self.num_capsule * self.dim_capsule),
                                      initializer='glorot_uniform',
                                      trainable=True)
         else:
@@ -57,23 +57,21 @@ class Capsule(Layer):
         batch_size = K.shape(u_vecs)[0]
         input_num_capsule = K.shape(u_vecs)[1]
         u_hat_vecs = K.reshape(u_hat_vecs, (batch_size, input_num_capsule,
-                                            self.num_capsule, self.dim_capsule))  #wang expand dim to restore matrix
+                                            self.num_capsule, self.dim_capsule))
         u_hat_vecs = K.permute_dimensions(u_hat_vecs, (0, 2, 1, 3))
-        #final u_hat_vecs.shape = [None, num_capsule, input_num_capsule, dim_capsule]
 
-        b = K.zeros_like(u_hat_vecs[:,:,:,0]) #shape = [None, num_capsule, input_num_capsule]
-        for i in range(self.routings): #wang routings
-            c = softmax(b, 1)    #wang paper 2
-            o = K.batch_dot(c, u_hat_vecs, [2, 2]) #wang paper 3
+        b = K.zeros_like(u_hat_vecs[:,:,:,0])
+        for i in range(self.routings):
+            c = softmax(b, 1)
+            o = K.batch_dot(c, u_hat_vecs, [2, 2])
             if K.backend() == 'theano':
                 o = K.sum(o, axis=1)
-            if i < self.routings - 1:   #wang not for the last round
-                o = K.l2_normalize(o, -1)   #wang paper 1
-                b = K.batch_dot(o, u_hat_vecs, [2, 3])  #wang paper 2
+            if i < self.routings - 1:
+                o = K.l2_normalize(o, -1)
+                b = K.batch_dot(o, u_hat_vecs, [2, 3])
                 if K.backend() == 'theano':
                     b = K.sum(b, axis=1)
 
-        #return self.activation(o)
         return c
 
     def compute_output_shape(self, input_shape):
@@ -114,7 +112,7 @@ class GlobalDiscriminator1(Layer):
 
         self.W = self.add_weight(name='GlobalDiscriminator_kernel',
                                     shape=(1, 16,
-                                            1), #wang
+                                            1),
                                      initializer='glorot_uniform',
                                      trainable=True)
 
